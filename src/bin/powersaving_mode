@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Run as sudo
+[ "$UID" -eq 0 ] || exec sudo -E "$0" "$@"
+
+if grep -q powersave "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor";
+then
+    # Set CPU scaling governor
+    for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor;
+    do
+        echo "schedutil" > $file;
+    done
+    # Set refresh rate
+    xrandr --output DP-4 --mode 2560x1600 --rate 165 > /dev/null 2>&1
+    xrandr --output eDP --mode 2560x1600 --rate 165 > /dev/null 2>&1
+    xrandr --output eDP-1 --mode 2560x1600 --rate 165 > /dev/null 2>&1
+    # Set brightness
+    for i in {1..4}; do brightness_up; done
+    # Restart compositor
+    pkill picom
+    picom -b
+    # Done
+    echo "Power Saving Mode is now inactive"
+    sudo -u nick DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "Power Saving Mode is now inactive"
+else
+    # Set CPU scaling governor
+    for file in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor;
+    do
+        echo "powersave" > $file;
+    done
+    # Set refresh rate
+    xrandr --output DP-4 --mode 2560x1600 --rate 60 > /dev/null 2>&1
+    xrandr --output eDP --mode 2560x1600 --rate 60 > /dev/null 2>&1
+    xrandr --output eDP-1 --mode 2560x1600 --rate 60 > /dev/null 2>&1
+    # Set brightness
+    for i in {1..4}; do brightness_down; done
+    # Kill music visualizer
+    pkill glava
+    # Kill compositor
+    pkill picom
+    # Done
+    echo "Power Saving Mode is now active"
+    sudo -u nick DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "Power Saving Mode is now active"
+fi

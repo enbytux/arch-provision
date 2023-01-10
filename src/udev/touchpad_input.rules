@@ -1,0 +1,1 @@
+KERNEL=="event[0-9]|event[0-9][0-9]", SUBSYSTEM=="input", ATTRS{name}=="MSFT0001:00 06CB:CE44 Touchpad", ACTION=="add", SYMLINK+="input/touchpad"

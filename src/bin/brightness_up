@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Check if AMD or NVIDIA GPU is connected
+BrPath=
+for Dir in /sys/class/backlight/amdgpu_*
+do
+    if [ -d "$Dir" ]
+    then
+       BrPath="$Dir"
+       break
+    fi
+done
+
+if [ -d "$BrPath" ]
+then
+    :
+    #echo "Found AMD GPU folder $BrPath"
+else
+    BrPath=/sys/class/backlight/nvidia_0
+    #echo "Did notfind AMD GPU, defaulting to $BrPath"
+fi
+
+# Step brightness by 10%
+BrCur=$(cat $BrPath/brightness)
+BrMax=$(cat $BrPath/max_brightness)
+BrStep=$(($BrMax/10))
+
+if [ "$(($BrCur + $BrStep))" -gt "$BrMax" ]
+then
+    echo "$BrMax" > "${BrPath}/brightness"
+else
+    BrCur=$(($BrCur+$BrStep))
+    echo "$BrCur" > "${BrPath}/brightness"
+fi

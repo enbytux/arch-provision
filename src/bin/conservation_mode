@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Run as sudo
+[ "$UID" -eq 0 ] || exec sudo "$0" "$@"
+
+Mode=$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode)
+
+if [ "$Mode" -eq "1" ]
+then
+    echo 0 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+    echo "Battery Conservation Mode is now inactive"
+    sudo -u nick DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "Battery Conservation Mode is now inactive"
+else
+    echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+    echo "Battery Conservation Mode is now active"
+    sudo -u nick DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send "Battery Conservation Mode is now active"
+fi
