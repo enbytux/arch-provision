@@ -31,4 +31,4 @@ burpsuite
 autopsy
 social-engineer-toolkit
 websploit
-caled-git
+sidequest-bin

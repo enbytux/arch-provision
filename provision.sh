@@ -27,8 +27,11 @@ sudo sed -i 's/#Hybrid/Hybrid/g' /etc/systemd/sleep.conf
 ## Add AMDGPU and NVIDIA to MODULES in /etc/mkinitcpio.conf
 sudo sed -i 's/MODULES=""/MODULES=(amdgpu nvidia)/g' /etc/mkinitcpio.conf
 
-## Add resume to /etc/mkinitcpio.conf
+## Tweak /etc/mkinitcpio.conf
 sudo sed -i 's/filesystems fsck/filesystems resume fsck/g' /etc/mkinitcpio.conf
+sudo sed -i 's/#COMPRESSION="zstd"/COMPRESSION="zstd/g' /etc/mkinitcpio.conf
+sudo sed -i 's/#COMPRESSION_OPTIONS=()/COMPRESSION_OPTIONS=(-9)/g' /etc/mkinitcpio.conf
+sudo sed -i 's/#MODULES_DECOMPRESS/MODULES_DECOMPRESS/g' /etc/mkinitcpio.conf
 mkinitcpio -P
 
 ## Copy brightness and CPU governer scripts to /usr/local/bin
