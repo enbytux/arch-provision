@@ -58,6 +58,10 @@ sudo systemctl enable bluetooth
 ## Set wireless regdom
 sudo iw reg set GB
 
+## Enable auto-cpufreq & power-profiles-daemon
+sudo systemctl enable auto-cpufreq
+sudo systemctl enable power-profiles-daemon
+
 ## Set power for NVIDIA GPU to auto
 sudo bash -c 'echo "auto" >> /sys/bus/pci/devices/0000:01:00.0/power/control'
 

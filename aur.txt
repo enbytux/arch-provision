@@ -32,3 +32,6 @@ autopsy
 social-engineer-toolkit
 websploit
 sidequest-bin
+kicost
+python-svg2mod-git
+python-kinjector
