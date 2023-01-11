@@ -1,3 +1,4 @@
+htop
 auto-cpufreq
 acpid
 thermald
