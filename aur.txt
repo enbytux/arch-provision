@@ -1,3 +1,4 @@
+preloader-signed
 extremecooling4linux
 lenopow
 lenovo-legion-wmi-dkms-git

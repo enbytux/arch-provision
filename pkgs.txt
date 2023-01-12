@@ -88,6 +88,16 @@ steam-native-runtime
 gamemode
 mangohud
 warzone2100
+retroarch
+retroarch-assets-glui
+retroarch-assets-xmb
+libretro-scummvm
+libretro-play
+libretro-parallel-n64
+libretro-overlays
+libretro-mupen64plus-next
+libretro-nestopia
+libretro-snes9x
 obs-studio
 obs-vkcapture
 live-media

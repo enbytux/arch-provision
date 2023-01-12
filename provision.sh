@@ -68,6 +68,9 @@ sudo bash -c 'echo "auto" >> /sys/bus/pci/devices/0000:01:00.0/power/control'
 ## Set battery conservation mode
 sudo bash -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 
+## /boot/loader/loader.conf tweaks
+sudo bash -c 'echo "console-mode max" >> /boot/loader/loader.conf'
+
 ## Install packages from pkgs.txt
 while IFS='' read -r pkg || [ -n "${pkg}" ];
 do
@@ -85,10 +88,5 @@ done < aur.txt
 
 yay --sudoloop --noconfirm -Sy ${AUR}
 
-## Create virtual desktops in Plasma
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.setDesktopName 1 Browsing
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.createDesktop 2 Social
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.createDesktop 3 Gaming
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.createDesktop 4 "Workspace Alef"
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.createDesktop 5 "Workspace Bet"
-dbus org.kde.KWin /VirtualDesktopManager org.kde.KWin.VirtualDesktopManager.createDesktop 6 "Workspace Gimel"
+## Secure Boot
+cp /usr/share/preloader-signed/{PreLoader,HashTool}.efi /boot/EFI/systemd

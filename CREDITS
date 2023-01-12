@@ -1,5 +1,13 @@
 # Nikolaos Karaolidis
 
-Scripts used for various elements related to the Lenovo Legion 7:
+DESCRIPTION:
+ Confs and scripts for the Lenovo Legion 7; to improve elements from 
+ touchpad usage to refresh rate, to brightness control and Battery 
+ Conservation Mode scripts.
 
-URL: https://git.karaolidis.com/Nikas36/legion-7
+FILES:
+ - src/modprobe/touchpad.conf
+
+SOURCES:
+ - https://blog.karaolidis.com/lenovo-legion-7
+ - https://git.karaolidis.com/Nikas36/legion-7
