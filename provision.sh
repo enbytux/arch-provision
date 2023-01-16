@@ -47,6 +47,9 @@ sudo chmod +x /usr/local/bin/powersaving_mode
 ## Copy UDEV rules to /etc/udev/rules.d
 sudo cp -avr src/udev/* /etc/udev/rules.d/
 
+## Copy systemd confs to /etc/systemd
+sudo cp -avr src/systemd/sleep.conf /etc/systemd/
+
 ## Copy Xorg confs to /etc/X11/xorg.conf.d
 sudo cp -avr src/xorg/* /etc/X11/xorg.conf.d/
 
