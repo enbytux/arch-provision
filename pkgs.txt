@@ -1,7 +1,8 @@
+tlp
+tlp-rdw
 htop
 auto-cpufreq
 acpid
-thermald
 cpupower
 turbostat
 wireless-regdb
@@ -77,7 +78,8 @@ nvidia-prime
 nvtop
 cuda
 cuda-tools
-cudann
+cudnn
+opencv-cuda
 opera
 opera-ffmpeg-codecs
 discord
@@ -161,7 +163,7 @@ python-quart
 python-tornado
 python-webcolors
 go
-gccgo
+gcc-go
 tinygo
 rust
 rust-wasm
@@ -174,7 +176,9 @@ vscode-json-languageserver
 stremio
 cdrtools
 vlc-luajit
+qnapi
 syncplay
+handbrake
 hcxtools
 hcxkeys
 nmap
@@ -185,3 +189,6 @@ aircrack-ng
 gnu-netcat
 john
 sqlmap
+wireguard-tools
+innernet
+jre17-openjdk

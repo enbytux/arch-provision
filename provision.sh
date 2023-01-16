@@ -6,8 +6,9 @@ sudo cp src/pacman/* /etc/pacman.d/hooks/
 ## Change 'native' to 'znver3' in /etc/makepkg.conf
 sudo sed -i 's/-march=native/-march=znver3/g' /etc/makepkg.conf
 
-## Add GAMEMODERUNEXEC variable to /etc/environment
+## Copy environment and vconsole.conf to /etc
 sudo cp src/etc/environment /etc/environment
+sudo cp src/etc/vconsole.conf /etc/vconsole.conf
 
 ## Install BORE-LTO kernel & uninstall old kernel (and vi, it's awful. VIM FTW!)
 sudo pacman -Sy linux-cachyos-bore-lto linux-cachyos-bore-lto-headers
@@ -29,7 +30,7 @@ sudo sed -i 's/MODULES=""/MODULES=(amdgpu nvidia)/g' /etc/mkinitcpio.conf
 
 ## Tweak /etc/mkinitcpio.conf
 sudo sed -i 's/filesystems fsck/filesystems resume fsck/g' /etc/mkinitcpio.conf
-sudo sed -i 's/#COMPRESSION="zstd"/COMPRESSION="zstd/g' /etc/mkinitcpio.conf
+sudo sed -i 's/#COMPRESSION="zstd"/COMPRESSION="zstd"/g' /etc/mkinitcpio.conf
 sudo sed -i 's/#COMPRESSION_OPTIONS=()/COMPRESSION_OPTIONS=(-9)/g' /etc/mkinitcpio.conf
 sudo sed -i 's/#MODULES_DECOMPRESS/MODULES_DECOMPRESS/g' /etc/mkinitcpio.conf
 mkinitcpio -P
@@ -58,9 +59,9 @@ sudo systemctl enable bluetooth
 ## Set wireless regdom
 sudo iw reg set GB
 
-## Enable auto-cpufreq & power-profiles-daemon
+## Enable auto-cpufreq and tlp
 sudo systemctl enable auto-cpufreq
-sudo systemctl enable power-profiles-daemon
+sudo systemctl enable tlp
 
 ## Set power for NVIDIA GPU to auto
 sudo bash -c 'echo "auto" >> /sys/bus/pci/devices/0000:01:00.0/power/control'
@@ -90,3 +91,6 @@ yay --sudoloop --noconfirm -Sy ${AUR}
 
 ## Secure Boot
 cp /usr/share/preloader-signed/{PreLoader,HashTool}.efi /boot/EFI/systemd
+
+## Enable ryzen-ppd
+sudo systemctl enable ryzen-ppd

@@ -1,3 +1,8 @@
+zenpower3-dkms
+ryzen_smu-dkms-git
+ryzen-controller-git
+ryzen_monitor
+amdctl
 preloader-signed
 extremecooling4linux
 lenopow
@@ -25,14 +30,11 @@ unity-editor-lts
 android-studio
 taptempo
 libbdplus
-tremulous
-tremulous-data
 anarchism
 burpsuite
-autopsy
 social-engineer-toolkit
-websploit
 sidequest-bin
 kicost
 python-svg2mod-git
 python-kinjector
+jellyfin-media-player
