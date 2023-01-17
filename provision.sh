@@ -15,7 +15,11 @@ sudo pacman -Sy linux-cachyos-bore-lto linux-cachyos-bore-lto-headers
 sudo pacman -Rsn linux-cachyos linux-cachyos-headers vi
 
 ## Fix brightness control
-sudo sed -i 's/rw/rw nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1/g' /boot/loader/entries/linux-cachyos-bore-lto.conf
+sudo sed -i 's/rw/rw drm.edid_firmware=eDP-1:edid/edid.bin nvidia-drm.modeset=0 nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1/g' /boot/loader/entries/linux-cachyos-bore-lto.conf
+
+## Copy EDID firmware to /lib/firmware
+sudo mkdir /lib/firmware/edid
+sudo cp src/firmware/edid.bin /lib/firmware/edid/
 
 ## systemd sleep stuff
 sudo sed -i 's/#Allow/Allow/g' /etc/systemd/sleep.conf
