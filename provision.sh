@@ -30,7 +30,7 @@ sudo sed -i 's/#HibernateState/HibernateState/g' /etc/systemd/sleep.conf
 sudo sed -i 's/#Hybrid/Hybrid/g' /etc/systemd/sleep.conf
 
 ## Add AMDGPU and NVIDIA to MODULES in /etc/mkinitcpio.conf
-sudo sed -i 's/MODULES=""/MODULES=(amdgpu nvidia)/g' /etc/mkinitcpio.conf
+sudo sed -i 's/MODULES="crc32c"/MODULES=(crc32c amdgpu nvidia)/g' /etc/mkinitcpio.conf
 
 ## Tweak /etc/mkinitcpio.conf
 sudo sed -i 's/filesystems fsck/filesystems resume fsck/g' /etc/mkinitcpio.conf
@@ -87,6 +87,9 @@ done < pkgs.txt
 
 sudo pacman --noconfirm -Sy ${PKGS}
 
+## Set Java to version 19
+sudo archlinux-java set java-19-openjdk
+
 ## Install AUR packages from aur.txt
 AUR=""
 while IFS='' read -r pkg || [ -n "${pkg}" ];
@@ -96,8 +99,6 @@ done < aur.txt
 
 yay --sudoloop --noconfirm -Sy ${AUR}
 
-## Secure Boot
-cp /usr/share/preloader-signed/{PreLoader,HashTool}.efi /boot/EFI/systemd
-
-## Enable ryzen-ppd
+## Enable cpupower and ryzen-ppd
+sudo systemctl enable cpupower
 sudo systemctl enable ryzen-ppd

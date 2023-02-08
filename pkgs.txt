@@ -3,8 +3,12 @@ tlp-rdw
 htop
 auto-cpufreq
 acpid
+acpi_call-dkms
 cpupower
 turbostat
+perf
+schedtool
+realtime-privileges
 wireless-regdb
 terminus-font
 libfido2
@@ -115,6 +119,7 @@ gambas3-gb-openal
 kdenlive
 krita
 inkscape
+gimp
 blender
 luminancehdr
 kicad
@@ -164,7 +169,6 @@ python-quart
 python-tornado
 python-webcolors
 go
-gcc-go
 tinygo
 rust
 rust-wasm
